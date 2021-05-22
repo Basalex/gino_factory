@@ -7,9 +7,9 @@ from typing import Any, Mapping, Iterator, Iterable, Optional, Type, Union
 
 from gino.crud import CRUDModel
 
-from core.gino_factory.faker import factory_dict, factory_dict_with_args, faker
-from core.gino_factory.proxy import ProxyFactory, ProxyTreeFactory
-from core.gino_factory.utils import camel_to_snake_case, get_model_fields, lazy_method
+from gino_factory.faker import factory_dict, factory_dict_with_args, faker
+from gino_factory.proxy import ProxyFactory, ProxyTreeFactory
+from gino_factory.utils import camel_to_snake_case, get_model_fields, lazy_method
 
 
 PyiType = namedtuple("PyiType", ["class_name", "base", "type_wrapper"])
