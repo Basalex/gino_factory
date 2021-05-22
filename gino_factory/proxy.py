@@ -1,7 +1,7 @@
 from functools import wraps
 from typing import Iterable, Iterator, Optional
 
-from gino_factory.faker import Faker
+from faker import Faker
 
 faker = Faker("en")
 

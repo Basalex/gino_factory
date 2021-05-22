@@ -1,10 +1,9 @@
-
 from collections import UserDict
 from datetime import date, datetime, time
 from functools import partial
 from typing import Optional
 
-from gino_factory.faker import Faker
+from faker import Faker
 
 faker = Faker("en")
 faker_float = partial(

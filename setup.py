@@ -6,7 +6,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open("README.rst", "r", encoding="utf-8") as f:
     long_description = f.read()
 
-VERSION = '0.1.0a0'
+VERSION = '0.1.0a2'
 DESCRIPTION = 'Gino Factory'
 LONG_DESCRIPTION = 'Generate random data for testing'
 
