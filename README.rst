@@ -9,7 +9,7 @@ Gino Factory
 Examples of usage:
 ~~~~~~~~~~~~~~~~~~
 
-Using gino model bellow
+Let's create gino model
 
 .. code:: python
 
@@ -21,7 +21,7 @@ Using gino model bellow
         custom_field = db.Column(db.String(255), nullable=False, unique=True)
         custom_factory = db.Column(db.String(255), nullable=False, unique=True)
 
-Then, you would want to use MainRouter class
+Next you need to register this model
 
 .. code:: python
 
@@ -32,11 +32,19 @@ Then, you would want to use MainRouter class
 
     Factory.register(User, custom_field='value', custom_factory=function)
 
-Using in tests example:
+And use this class for testing purposes
 
 .. code:: python
 
     async def test():
         user = await Factory.user()
         ten_users = await Factory.cycle(10).user()
-        user_tree = await Factory.cycle(10).user()
+        user_tree = await Factory.tree().user()
+
+or you may fill your database with random data using __random__ method
+
+.. code:: python
+
+    await Factory.__random__()
+
+This method inserts random data to all registered tables

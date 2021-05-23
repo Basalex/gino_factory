@@ -6,7 +6,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open("README.rst", "r", encoding="utf-8") as f:
     long_description = f.read()
 
-VERSION = '0.1.0a2'
+VERSION = '0.1.0a7'
 DESCRIPTION = 'Gino Factory'
 LONG_DESCRIPTION = 'Generate random data for testing'
 
@@ -28,5 +28,8 @@ setup(
         "Operating System :: Unix",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
-    ]
+    ],
+    project_urls={
+        "Source": "https://github.com/Basalex/gino_factory",
+    },
 )
