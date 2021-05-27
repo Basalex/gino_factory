@@ -22,7 +22,7 @@ setup(
     install_requires=['gino', 'faker'],
     keywords=['python', 'gino', 'faker'],
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",

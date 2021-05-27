@@ -6,3 +6,4 @@ venv
 
 # Environment Files
 /.env
+setup.py
