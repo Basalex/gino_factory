@@ -47,7 +47,7 @@ class contains:
 factory_dict = FactoryDict(
     {
         contains("username"): faker.user_name,
-        contains("email"): faker.email,
+        # contains("email"): faker.email,
         contains("phone"): faker.phone_number,
         contains("password"): faker.password,
         contains("first", "name"): faker.first_name,

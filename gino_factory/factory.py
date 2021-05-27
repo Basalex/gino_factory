@@ -3,14 +3,13 @@ import enum
 import random
 from collections import namedtuple
 from functools import partial
-from typing import Any, Mapping, Iterator, Iterable, Optional, Type, Union
+from typing import Any, Mapping, Iterator, Iterable, Optional, Type, Union, List
 
 from gino.crud import CRUDModel
 
 from gino_factory.faker import factory_dict, factory_dict_with_args, faker
 from gino_factory.proxy import ProxyFactory, ProxyTreeFactory
-from gino_factory.utils import camel_to_snake_case, get_model_fields, lazy_method
-
+from gino_factory.utils import camel_to_snake_case, get_model_fields, lazy_method, get_or_create
 
 PyiType = namedtuple("PyiType", ["class_name", "base", "type_wrapper"])
 
@@ -63,6 +62,8 @@ class GinoFactory(metaclass=GinoFactoryMeta):
         cls._models_name_mapping[method_name] = model
         cls._models_table_mapping[model.__table__.name] = model
         for field_name, field in get_model_fields(model).items():
+            if getattr(field, 'autoincrement', None) == 'auto' and field.primary_key:
+                continue
             try:
                 python_type = field.type.python_type
             except NotImplementedError:
@@ -114,17 +115,22 @@ class GinoFactory(metaclass=GinoFactoryMeta):
 
     @classmethod
     def tree(
-        cls, amount: int = 50, max_depth: int = 5, single_tree: bool = False,
+        cls,
+        amount: int = 50,
+        max_depth: int = 5,
+        top_parents_amount: int = 3,
+        top_parents: List[CRUDModel] = None,
     ) -> Union["GinoFactory", "ProxyTreeFactory", Any]:
         return cls._proxy_tree_cls(
             cls,
             amount,
             max_depth=max_depth,
-            single_tree=single_tree,
+            top_parents_amount=top_parents_amount,
+            top_parents=top_parents,
         )
 
     @classmethod
-    async def __create_object__(cls, model, /, **kwargs):
+    async def __create_object__(cls, model, **kwargs):
         obj_data = {}
         for key, item in kwargs.items():
             if isinstance(item, Iterator):
@@ -139,7 +145,7 @@ class GinoFactory(metaclass=GinoFactoryMeta):
                         item = getattr(item, fk.column.name)
                         break
             obj_data[key] = item
-        return await model.create(**obj_data)
+        return await get_or_create(model, **obj_data)
 
     @classmethod
     async def __random__(cls):

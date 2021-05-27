@@ -6,7 +6,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open("README.rst", "r", encoding="utf-8") as f:
     long_description = f.read()
 
-VERSION = '0.1.0a7'
+VERSION = '0.1.0'
 DESCRIPTION = 'Gino Factory'
 LONG_DESCRIPTION = 'Generate random data for testing'
 
@@ -22,7 +22,7 @@ setup(
     install_requires=['gino', 'faker'],
     keywords=['python', 'gino', 'faker'],
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
         "Programming Language :: Python :: 3",
         "Operating System :: Unix",
