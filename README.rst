@@ -48,7 +48,7 @@ Single objects
         user = await Factory.user()
         assert user.team_id is not None
 
-        team = await Factory.test()
+        team = await Factory.team()
         user = await Factory.user(team_id=team)
 
         assert team.id == user.team_id
